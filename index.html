@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="description" content="Swish Arena: 3D basketbal in je browser. 1v1 tegen bots of online tegen vrienden.">
 <meta name="theme-color" content="#08111c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2228%22 fill=%22%23ff7a1f%22/%3E%3Cpath d=%22M4 32h56M32 4v56M12 12c10 10 10 30 0 40M52 12c-10 10-10 30 0 40%22 stroke=%22%231a0e08%22 stroke-width=%223.5%22 fill=%22none%22/%3E%3C/svg%3E">
@@ -684,48 +684,82 @@ body.touchmode #npToast.on{animation:npInT 4.2s ease-out forwards}
 
 /* music screen */
 .npPill{cursor:pointer}
-#pMusic{width:min(640px,100%)}
-#musicBody{display:flex;flex-direction:column;gap:12px}
-.mpNow{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;background:linear-gradient(120deg,rgba(255,122,31,.16),rgba(255,194,58,.06));border:1px solid rgba(255,194,58,.3)}
-.mpNowTx{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
-.mpLab{font-size:12px;color:var(--amber);font-weight:700;letter-spacing:.04em}
-.mpNowTx b{font-family:var(--display);font-weight:900;font-size:28px;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpSub{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpCtl{display:flex;gap:8px;align-items:center;flex:none}
-.mpCtl .iconMini{width:40px;height:40px;flex-basis:40px;font-size:15px}
-.mpChip{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:none;padding:6px 12px 5px;border-radius:999px;background:rgba(246,241,230,.06);border:1px solid rgba(246,241,230,.2);color:var(--chalk);flex:none}
-.mpChip:hover{transform:none;border-color:var(--amber)}
-.mpChip.on{background:var(--amber);border-color:var(--amber);color:#1a1206}
-.mpChip:disabled{opacity:.4;cursor:default}
-.mpBig{font-size:20px;padding:12px 18px 10px;background:rgba(246,241,230,.05);color:var(--chalk);border-color:rgba(255,194,58,.45)}
-.mpBig.on{background:var(--amber);color:#1a1206;border-color:var(--amber)}
-.mpTabs{display:flex;gap:6px;border-bottom:1px solid var(--line);padding-bottom:8px}
-.mpTab{font-size:18px;padding:6px 14px 4px;background:transparent;border-color:transparent;color:var(--muted)}
-.mpTab.on{color:var(--chalk);border-color:rgba(246,241,230,.3)}
-.mpTab:hover{transform:none}
-.mpAlbum{border-radius:10px;background:rgba(8,14,24,.5);border:1px solid rgba(246,241,230,.08)}
-.mpHead{display:flex;align-items:center;gap:8px;padding:8px 10px}
-.mpName{all:unset;cursor:pointer;flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
-.mpName b{font-family:var(--display);font-weight:800;font-size:21px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpName span{font-size:12px;color:var(--muted)}
-.mpName:focus-visible{outline:2px solid var(--good);outline-offset:3px;border-radius:4px}
-.mpDel{color:var(--hot)}
-.mpList{display:flex;flex-direction:column;padding:0 6px 8px}
-.mpTrack{display:flex;align-items:center;gap:6px;border-radius:8px}
-.mpTrack:hover{background:rgba(246,241,230,.05)}
-.mpTrack.cur{background:rgba(255,194,58,.12)}
-.mpPlay{all:unset;cursor:pointer;flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:7px 8px}
-.mpPlay:focus-visible{outline:2px solid var(--good);border-radius:6px}
-.mpNum{width:22px;text-align:right;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none}
-.mpTrack.cur .mpNum{color:var(--amber)}
-.mpTitle{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.mpTitle small{font-weight:500;color:var(--muted);font-size:12px}
-.mpTrack.cur .mpTitle{color:var(--amber)}
-.mpAdd{width:28px;height:28px;flex-basis:28px;margin-right:4px}
-.mpPop{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:6px 10px 8px 40px;font-size:13px;color:var(--muted)}
-.mpNew{display:flex;gap:8px}
-.mpNew .txt{flex:1 1 auto;max-width:none}
-@media (max-height:560px){.nv{font-size:clamp(22px,7.2vh,40px)}.mpNowTx b{font-size:22px}}
+#pMusic{width:min(720px,100%)}
+#pMusic h2{font-size:clamp(36px,5vw,52px)}
+#musicBody{display:flex;flex-direction:column;gap:16px}
+.mpI{width:40px;height:40px;padding:0;display:grid;place-items:center;border-radius:50%;background:transparent;border:0;color:var(--chalk);flex:none;transition:transform .15s,background .15s,color .15s}
+.mpI svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mpI:hover{transform:scale(1.08);background:rgba(246,241,230,.08)}
+.mpI.sm{width:34px;height:34px}.mpI.sm svg{width:18px;height:18px}
+.mpI.on{color:var(--amber)}
+.mpI.big{width:58px;height:58px;background:var(--chalk);color:#10151c}.mpI.big svg{width:26px;height:26px}
+.mpI.big:hover{background:#fff;transform:scale(1.06)}
+.mpNow{display:flex;gap:20px;align-items:center;padding:18px;border-radius:16px;
+  background:radial-gradient(120% 140% at 0% 0%,rgba(255,122,31,.28),rgba(255,122,31,0) 55%),linear-gradient(160deg,rgba(24,30,42,.95),rgba(10,14,22,.95));border:1px solid rgba(255,194,58,.22);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.mpArt{position:relative;flex:none;width:64px;height:64px;border-radius:50%;overflow:hidden;background:#0b0d11;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.mpArt img{display:block;position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;margin:0}
+.mpMosaic img{position:static}
+.mpArt.big{width:132px;height:132px}.mpArt.mid{width:96px;height:96px}
+.mpArt.spin img{animation:mpSpin 9s linear infinite}
+.mpNow.paused .mpArt.spin img{animation-play-state:paused}
+@keyframes mpSpin{to{transform:rotate(360deg)}}
+.mpMosaic{border-radius:12px;display:grid;grid-template-columns:1fr 1fr;place-items:center;background:linear-gradient(135deg,#1c2433,#0b0f17)}
+.mpMosaic.n1{grid-template-columns:1fr}.mpMosaic img{width:86%;height:auto}
+.mpMosaic svg{width:40%;height:40%;fill:none;stroke:var(--amber);stroke-width:1.8;stroke-linecap:round}
+.mpNowInfo{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.mpEyebrow{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--amber);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpTitleBig{font-family:var(--display);font-weight:900;font-size:clamp(26px,3.6vw,38px);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpArtist{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpBar{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mpTrackBar{flex:1;height:4px;border-radius:2px;background:rgba(246,241,230,.14);overflow:hidden}
+.mpFill{height:100%;width:0;background:linear-gradient(90deg,var(--ball),var(--amber));border-radius:2px;transition:width .25s linear}
+.mpCtl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px}
+.mpCtlSpacer{width:34px}
+.mpTop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.mpSeg{display:flex;padding:3px;border-radius:999px;background:rgba(246,241,230,.06);border:1px solid rgba(246,241,230,.1)}
+.mpSegB{font-family:var(--body);font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:none;padding:7px 16px 6px;border-radius:999px;border:0;background:transparent;color:var(--muted)}
+.mpSegB.on{background:var(--chalk);color:#10151c}.mpSegB:hover{transform:none}
+.mpPill{display:inline-flex;align-items:center;gap:7px;font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.02em;text-transform:none;padding:7px 14px 6px;border-radius:999px;background:rgba(246,241,230,.06);border:1px solid rgba(246,241,230,.2);color:var(--chalk)}
+.mpPill svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mpPill:hover{transform:none;border-color:var(--amber)}
+.mpPill.on{background:var(--amber);border-color:var(--amber);color:#1a1206}
+.mpDel{color:var(--hot);border-color:rgba(255,77,46,.4)}
+.mpGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
+.mpCard{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:14px;background:rgba(246,241,230,.04);border:1px solid rgba(246,241,230,.07);transition:background .2s,transform .2s,border-color .2s}
+.mpCard:hover,.mpCard:focus-visible,.mpCard.padfocus{background:rgba(246,241,230,.08);transform:translateY(-2px);border-color:rgba(255,194,58,.35)}
+.mpCard .mpArt{width:100%;height:auto;aspect-ratio:1;margin-bottom:4px}
+.mpCard b{font-family:var(--display);font-weight:800;font-size:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpCard span{font-size:12px;color:var(--muted)}
+.mpCard.cur b{color:var(--amber)}
+.mpDetail{display:flex;align-items:center;gap:16px}
+.mpBack{align-self:flex-start}
+.mpDetailTx{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+.mpDetailTx>b{font-family:var(--display);font-weight:900;font-size:clamp(26px,3.4vw,36px);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpActs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.mpPlayBtn{display:inline-flex;align-items:center;gap:8px;font-size:17px;padding:9px 18px 7px;border-radius:999px}
+.mpPlayBtn svg{width:16px;height:16px}
+.mpSongs{display:flex;flex-direction:column}
+.mpRow{display:flex;align-items:center;gap:4px;border-radius:10px;padding-right:4px}
+.mpRow:hover{background:rgba(246,241,230,.05)}
+.mpRow.cur{background:rgba(255,194,58,.09)}
+.mpRowMain{all:unset;cursor:pointer;flex:1;min-width:0;display:flex;align-items:center;gap:14px;padding:9px 10px}
+.mpRowMain:focus-visible{outline:2px solid var(--good);border-radius:8px}
+.mpN{width:20px;flex:none;text-align:right;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;display:flex;justify-content:flex-end;align-items:flex-end;gap:2px;height:14px}
+.mpN i{width:3px;background:var(--amber);border-radius:1px;animation:mpEq .8s ease-in-out infinite alternate}
+.mpN i:nth-child(2){animation-delay:-.3s}.mpN i:nth-child(3){animation-delay:-.55s}
+@keyframes mpEq{from{height:3px}to{height:14px}}
+.mpRowTx{flex:1;min-width:0;display:flex;flex-direction:column}
+.mpRowTx b{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mpRowTx small{font-size:12px;color:var(--muted)}
+.mpRow.cur .mpRowTx b{color:var(--amber)}
+.mpDur{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.mpPop{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:4px 10px 10px 44px;font-size:13px;color:var(--muted)}
+.mpNew{display:flex;gap:8px}.mpNew .txt{flex:1 1 auto;max-width:none}
+.mpHint{margin:0}
+@media (max-width:600px){.mpNow{flex-direction:column;text-align:center}.mpNowInfo{width:100%}.mpArt.big{width:116px;height:116px}.mpDetail{flex-wrap:wrap}}
+@media (max-height:560px){.mpArt.big{width:92px;height:92px}.mpNow{padding:12px;gap:14px}.mpI.big{width:48px;height:48px}}
+@media (prefers-reduced-motion:reduce){.mpArt.spin img,.mpN i{animation:none}}
+@media (max-height:560px){.nv{font-size:clamp(22px,7.2vh,40px)}}
 </style>
 </head>
 <body>
@@ -780,7 +814,7 @@ body.touchmode #npToast.on{animation:npInT 4.2s ease-out forwards}
         <span class="pBadge"><b id="pNum" class="notr">13</b></span>
         <span class="pInfo"><b id="pName" class="notr">PLAYER</b><span class="pRank"><i id="rankName">Rookie</i><span class="rankBar"><span id="rankFill"></span></span><em id="rankRp">0 RP</em></span></span>
       </button>
-      <div class="mTopR"><span class="coinPill" title="Coins"><i class="coin"></i><b id="mCoins">0</b></span><button class="iconBtn" id="btnSettings" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5"/><circle cx="12" cy="12" r="6.3"/></svg></button></div>
+      <div class="mTopR"><span class="coinPill" title="Coins"><i class="coin"></i><b id="mCoins">0</b></span><button class="iconBtn touchOnly" id="btnFull" aria-label="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button><button class="iconBtn" id="btnSettings" aria-label="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5"/><circle cx="12" cy="12" r="6.3"/></svg></button></div>
     </header>
     <div class="mMid">
       <div class="mLogo"><span class="logo" aria-label="Swish Arena"><svg viewBox="0 0 300 170" aria-hidden="true"><path class="arc" d="M6 150 C 40 -70, 230 -95, 290 34"/><circle class="bl" cx="290" cy="34" r="8"/></svg><span class="l1">SWISH</span><span class="l2">ARENA</span></span></div>
@@ -1833,6 +1867,7 @@ function applause(level,dur){
 // two-finger whistle
 function whistleFan(delay){if(!crowdOn)return;const f=2300+Math.random()*700;tone('sine',f,f*1.32,0.22,0.035,delay,(Math.random()-.5)*1.5);tone('sine',f*1.3,f*0.95,0.4,0.03,delay+0.24,(Math.random()-.5)*1.5);noise('bandpass',f,0,8,0.5,0.008,0.02,delay)}
 const sfx={
+  reachCue(){noise('bandpass',700,2600,1.4,0.16,0.2);tone('triangle',380,620,0.09,0.05)},
   uiTick(){tone('sine',1500,1800,0.03,0.03)},
   uiGo(){tone('triangle',240,520,0.13,0.08);noise('highpass',2400,6500,0.8,0.14,0.05)},
   boom(){tone('sine',96,36,0.75,0.5);noise('lowpass',600,70,0.7,0.6,0.22);tone('triangle',520,1040,0.3,0.045,0.06)},
@@ -1987,7 +2022,7 @@ function setMusicOpen(open){if(mFilt)mFilt.frequency.setTargetAtTime(open?18000:
 function setMusicLevel(){if(mBus)mBus.gain.setTargetAtTime(musicLevel(),ac.currentTime,0.05)}
 function duckMusic(to,dur){if(!mDuck)return;const t=ac.currentTime;mDuck.gain.cancelScheduledValues(t);mDuck.gain.setTargetAtTime(to,t,0.02);mDuck.gain.setTargetAtTime(1,t+0.18,dur/3)}
 function schedMusic(){
-  if(!ac||MUS.mode!=='beat'||!MUS.song)return;
+  if(!ac||MUS.mode!=='beat'||!MUS.song||MUS.paused)return;
   if(MUS.next<ac.currentTime-0.2)MUS.next=ac.currentTime+0.05;
   while(MUS.next<ac.currentTime+0.15){
     if(MUS.step>=FORM_BARS*16){MUS.step=0;if(MUSIC_READY&&MPLAY.queue.length>1){setTimeout(()=>musicSkip(1),0);return}}   // song over: next in the queue (or loop if it is the only one)
@@ -2745,7 +2780,7 @@ function lessonProgress(type,val){
    signed-in viewer without special send rights. */
 const IN_CLAUDE=!!(window.claude&&typeof window.claude.use==='function');
 const NET={room:null,ok:null,game:null,host:false,opp:null,myPeer:null,gname:null,started:false,
-  buf:[],view:null,g:null,lastG:null,evN:0,evOut:null,evSeen:0,rb:false,rbFlight:false,lastBY:9,nick:store.get('swish.nick',''),
+  buf:[],view:null,g:null,lastG:null,evN:0,evOut:null,evQ:[],evSeen:0,rsm:null,rshot:null,rb:false,rbFlight:false,lastBY:9,nick:store.get('swish.nick',''),
   sendT:0,localEnd:null,oppNick:'',oppLeftT:0};
 const NET_DIFF={name:'Online',speed:6,accel:15,react:0.15,gap:1.1,bite:0,ws:0.1,win:0.2,contest:1,block:0,rim:0,steal:0,reachW:0.25,offT:0.6,offWin:0.2,fallT:1.2};
 const r2=v=>Math.round(v*100)/100;
@@ -2893,7 +2928,7 @@ function netStartMatch(){
   Object.assign(game,{mode:'play',kind:'online',challenge:false,lesson:null});zeroStats();setCrowd(true);M.practice=false;
   DIFF[DYN]=NET_DIFF;defLevel=DYN;rigVisible(DR,true);
   Object.assign(M,{active:true,mode:'online',you:0,bot:0,to:7,stops:0,steals:0,blocks:0,skill:0.6,att:'p',phase:'idle',t:0,clock:12});
-  def.role='remote';NET.buf.length=0;NET.view=null;NET.evSeen=0;NET.evOut=null;NET.localEnd=null;NET.oppLeftT=0;
+  def.role='remote';NET.buf.length=0;NET.view=null;NET.evSeen=0;NET.evOut=null;NET.evQ=[];NET.rsm=null;NET.rshot=null;NET.localEnd=null;NET.oppLeftT=0;
   hudCache={};beginPlay();recStart();
   if(NET.host){NET.g={seq:1,sh:0,sg:0,att:Math.random()<0.5?'h':'g',ph:'check',opp:NET.opp,t:0};NET.lastG=null;netApplyG(NET.g)}
   pop('ONLINE','var(--ball)','tegen '+NET.oppNick);
@@ -2926,7 +2961,7 @@ function netApplyG(g){
 function netEnd(kind,pts){
   if(NET.localEnd)return;NET.localEnd=kind;
   if(NET.host)netHostEnd(kind,pts||0,'h');
-  else{NET.evN++;NET.evOut=[NET.evN,'end',kind,pts||0]}
+  else netEv('end',kind,pts||0)
 }
 function netHostEnd(kind,pts,who){
   const g={...NET.g};if(g.ph!=='live'&&g.ph!=='check')return;
@@ -2934,7 +2969,8 @@ function netHostEnd(kind,pts,who){
   g.ph='dead';g.t=0;g.next=kind==='score'?who:(who==='h'?'g':'h');
   NET.g=g;netApplyG(g);
 }
-function netSendSteal(){NET.evN++;NET.evOut=[NET.evN,'steal',0,0]}
+function netEv(type,a,b,c){NET.evN++;NET.evQ.push([NET.evN,type,a||0,b||0,c||0]);if(NET.evQ.length>8)NET.evQ.shift();NET.evOut=NET.evQ}
+function netSendSteal(){netEv('steal')}
 // host clock
 function netHostTick(dt){
   const g=NET.g;if(!g)return;g.t=(g.t||0)+dt;
@@ -2968,7 +3004,7 @@ function netSend(){
     a:[r2(PR.crouch),r2(PR.lean),r2(PR.side),r2(PR.twist),r2(PR.sit),r2(PR.flick[1])],
     h:[r2(PR.hs[0].x),r2(PR.hs[0].y),r2(PR.hs[0].z),r2(PR.hs[1].x),r2(PR.hs[1].y),r2(PR.hs[1].z)],
     b:own?[r2(ball.pos.x),r2(ball.pos.y),r2(ball.pos.z),ball.held?0:1]:null,
-    air:player.onGround?0:1,e:NET.evOut,col:PROFILE.color,fm:[PR.fm[0],PR.fm[1]]};
+    air:player.onGround?0:1,e:NET.evQ,sm:shooting&&shooting.type==='jump'&&own?r2(Math.max(0,shooting.t)):-1,col:PROFILE.color,fm:[PR.fm[0],PR.fm[1]]};
   if(NET.host)st.g=NET.g;
   NET.game.presence(st).catch(()=>{});
 }
@@ -2980,15 +3016,39 @@ function netReceive(){
   const p=opp.presence;
   if(p!==NET.lastP){NET.lastP=p;if(Array.isArray(p.s))NET.buf.push({t:performance.now(),p});if(NET.buf.length>20)NET.buf.shift()}
   if(!NET.host&&p.g&&p.g.seq){const lg=NET.lastG;if(!lg||lg.seq!==p.g.seq||lg.ph!==p.g.ph||lg.sh!==p.g.sh||lg.sg!==p.g.sg)netApplyG(p.g)}
-  if(Array.isArray(p.e)&&p.e[0]>NET.evSeen){
-    NET.evSeen=p.e[0];
+  if(p!==NET.lastSm){NET.lastSm=p;if(typeof p.sm==='number'&&p.sm>=0)NET.rsm={t:p.sm+0.1,at:performance.now()};else{NET.rsm=null;NET.rshot=null}}
+  const evs=Array.isArray(p.e)?(Array.isArray(p.e[0])?p.e:[p.e]):[];
+  for(const e of evs)if(Array.isArray(e)&&e[0]>NET.evSeen){NET.evSeen=e[0];netOnEv(e)}
+}
+function netOnEv(e){const p={e};
+  {
     if(p.e[1]==='end'&&NET.host)netHostEnd(String(p.e[2]),+p.e[3]||0,'g');
     if(p.e[1]==='blk'&&M.att==='b'){M.blocks++;sfx.block();sfx.roar(1.2);pop(+p.e[2]?'AFGEWEZEN!':'BLOCK!','var(--good)',+p.e[2]?'dunk gestopt':'in zijn gezicht');cheer=Math.max(cheer,1.3);buzz('big');recHi('block','Block')}
     if(p.e[1]==='steal'&&M.att==='p'&&ball.held&&!shooting&&M.phase==='live'){
       ball.held=false;anim.move=null;const dx=ball.pos.x-def.pos.x,dz=ball.pos.z-def.pos.z,dl=Math.hypot(dx,dz)||1;
       ball.vel.set(-dx/dl*2.4,2,-dz/dl*2.4);sfx.steal();pop('GESTOLEN!','var(--muted)',NET.oppNick+' pakt hem');netEnd('steal',0);
     }
+    // his move reaches me (I defend): the same read-and-bite system as against the bot
+    if(p.e[1]==='mv'&&M.att==='b'&&game.role==='def'&&M.phase==='live')netDefSeesMove(+p.e[2]/100,+p.e[3]/100,String(p.e[4]));
+    // I broke his ankles (I attack): the full ankle-breaker moment on my side
+    if(p.e[1]==='ank'&&M.att==='p')netAnklesWon(+p.e[2]);
   }
+}
+function netDefSeesMove(x,z,type){
+  const Dl=DIFF[defLevel]||{},l=Math.hypot(x,z)||1;x/=l;z/=l;
+  if(distPD()>3||D_ACT.fall>0)return;
+  const b=D_ACT.bite;
+  if(b&&b.t>=(Dl.ws||0.1)&&b.t<=(Dl.ws||0.1)+(Dl.win||0.2)&&(x*b.x+z*b.z<0.2||type==='spin'||type==='btb')){
+    const pr_=pr(),side=Math.sign(x*pr_.x+z*pr_.z)||1,perfect=Math.abs(b.t-((Dl.ws||0.1)+(Dl.win||0.2)*0.5))<(Dl.win||0.2)*0.16;
+    playerAnklesBroken(side);netEv('ank',perfect?1:0);return;
+  }
+  if(!b&&(type==='cross'||type==='spin'||type==='btb'||type==='btl'))D_ACT.watch={t:0,x,z,red:redBeat(),type};
+}
+function netAnklesWon(perfect){
+  game.ankles++;game.ankleT=clock;slowMo(perfect?0.16:0.22,perfect?1.4:1.15);hype(perfect?2:1.4);shockwave(def.pos.x,0.03,def.pos.z,perfect?0x46e08b:0xff7a1f,perfect?6:4.5);
+  sfx.ankles();sfx.roar(perfect?2:1.5);flash(!!perfect,perfect?'rgba(70,224,139,.85)':'rgba(255,122,31,.8)');shake=Math.max(shake,0.4);fovKick-=9;cheer=2;
+  const L=perfect?['PERFECTE ANKLE BREAKER!','perfecte timing']:ANKLE_LINES[(Math.random()*ANKLE_LINES.length)|0];pop(L[0],perfect?'var(--good)':'var(--hot)',L[1]+' · +'+(perfect?1000:500)+' aura');
+  recHi('ank',perfect?'Perfecte ankle breaker':'Ankle breaker');buzz('big');
 }
 function netView(){
   const B=NET.buf;if(!B.length)return null;
@@ -3003,10 +3063,13 @@ function netView(){
 }
 function updateRemote(dt){
   const V=netView();if(!V)return;NET.view=V;
-  def.pos.set(V.s[0],0,V.s[2]);def.y=Math.max(0,V.s[1]);def.vel.set(V.s[4],0,V.s[5]);def.onGround=!V.air;def.vy=0;def.state='guard';
+  def.pos.set(V.s[0],0,V.s[2]);def.y=Math.max(0,V.s[1]);def.vel.set(V.s[4],0,V.s[5]);def.onGround=!V.air;def.vy=0;def.state=V.a[4]>0.4?'fallen':'guard';     // on the floor = no contest
   rigBody(DR,_c3.set(def.pos.x,def.y,def.pos.z),def.vel,def.onGround,dt,{yaw:V.s[3],yawRate:30,crouch:V.a[0],lean:V.a[1],side:V.a[2],twist:V.a[3],sit:V.a[4],tuck:0.15,steps:false});
   if(V.h){DR.J.ht[0].set(V.h[0],V.h[1],V.h[2]);DR.J.ht[1].set(V.h[3],V.h[4],V.h[5]);DR.rate[0]=DR.rate[1]=45;DR.flickT[1]=V.a[5]}
   rigArms(DR,dt);rigPlace(DR);setFingers(DR,0,(+V.fm[0]|0)&7);setFingers(DR,1,(+V.fm[1]|0)&7);
+  if(game.mode==='play'&&!dunk&&D_ACT.fall<=0){const dx=player.pos.x-def.pos.x,dz=player.pos.z-def.pos.z,d=Math.hypot(dx,dz);
+    if(d<0.74&&d>1e-4){const push=0.74-d,nx=dx/d,nz=dz/d,me=game.role==='off'?(def.onGround?0.75:0.5):(player.onGround?0.25:0.5);
+      player.pos.x+=nx*push*me;player.pos.z+=nz*push*me;const vin=-(player.vel.x*nx+player.vel.z*nz);if(vin>0){player.vel.x+=nx*vin;player.vel.z+=nz*vin}}}
   // their ball
   if(M.att==='b'&&V.b){
     NET.rb=true;ball.held=false;
@@ -3651,6 +3714,7 @@ function startMove(type,to,pressT,pressR){
   if(m.path)steerAround(m.path,player.pos,def.pos,defOn()&&def.role!=='off'&&DR.visible);
   try{if(T.on&&navigator.vibrate)navigator.vibrate(type==='pump'?8:14)}catch(e){}
   defReact(type,dir,sloppy);lessonProgress('moves',type);
+  if(M.mode==='online'&&game.role==='off'&&M.phase==='live'&&type!=='pump'&&type!=='hesi'){const px=m.path?m.path.x:r.x*(m.to||1),pz=m.path?m.path.z:r.z*(m.to||1);netEv('mv',Math.round(px*100),Math.round(pz*100),type)}
   return true;
 }
 function moveJuice(dir,k){
@@ -3843,7 +3907,7 @@ function tryBlock(){
 function botBlockedYou(){
   sfx.block();sfx.ooh(1.1);pop('BLOCKED!','var(--muted)',def.role==='remote'?(NET.oppNick||'hij')+' blockt je':'zijn hand zat erop');shake=Math.max(shake,0.18);
   game.streak=0;onFire=false;
-  if(M.mode==='online'){NET.evN++;NET.evOut=[NET.evN,'blk',0,0]}
+  if(M.mode==='online')netEv('blk',0)
 }
 // shots in the first moments of flight can still be swatted by a hand in the way
 function flightBlocks(){
@@ -3993,7 +4057,7 @@ function finishDunk(){
     phys.shot={t:0,rim:false,board:false,scored:false,dead:true,dunk:true,three:false,countable:true,buzzer:false,grade:'dunk',blocked:true};
     game.att++;pickupCd=0.6;rebT=-1;game.streak=0;onFire=false;
     sfx.block();sfx.board(0.8);sfx.ooh(1.2);shake=Math.max(shake,0.35);pop('AFGEWEZEN!','var(--muted)',def.role==='remote'?(NET.oppNick||'hij')+' stond klaar':'hij stond klaar bij de ring');
-    if(M.mode==='online'){NET.evN++;NET.evOut=[NET.evN,'blk',1,0]}
+    if(M.mode==='online')netEv('blk',1)
     dunk.hang=false;const d=dunk.dir;dunk=null;player.onGround=false;player.vy=0;player.vel.set(d.x*0.8,0,d.z*0.8);return;
   }
   ball.held=false;ball.pos.set(C.x+dunk.dir.x*0.03,C.y+0.22,C.z+dunk.dir.z*0.03);ball.vel.set(0,-7,0);
@@ -4038,6 +4102,18 @@ function toScreen(v){_proj.copy(v).project(camera);return [(_proj.x*0.5+0.5)*inn
 const botRing=new THREE.Mesh(new THREE.RingGeometry(0.42,0.6,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x46e08b,transparent:true,opacity:0,depthWrite:false,toneMapped:false}));
 botRing.position.y=0.015;botRing.renderOrder=3;scene.add(botRing);
 const youRing=botRing.clone();youRing.material=botRing.material.clone();scene.add(youRing);
+// his reaching hand glows while he loads up: you see it even when you are both moving
+const reachGlow=(()=>{const cv=document.createElement('canvas');cv.width=cv.height=64;const g=cv.getContext('2d'),gr=g.createRadialGradient(32,32,2,32,32,32);
+  gr.addColorStop(0,'rgba(255,240,220,1)');gr.addColorStop(0.25,'rgba(255,120,40,.9)');gr.addColorStop(0.6,'rgba(255,60,20,.35)');gr.addColorStop(1,'rgba(255,40,10,0)');g.fillStyle=gr;g.fillRect(0,0,64,64);
+  const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cv),transparent:true,depthWrite:false,depthTest:false,blending:THREE.AdditiveBlending,toneMapped:false}));sp.renderOrder=6;sp.visible=false;scene.add(sp);return sp})();
+function updateReachGlow(dt){
+  const on=def.role==='def'&&def.state==='reach'&&defOn()&&game.mode==='play';
+  const m=reachGlow.material;
+  if(on){const D=DIFF[defLevel],rk=clamp(def.t/D.reachW,0,1.3),i=def.reach.hand;reachGlow.position.copy(DR.J.hand[i]);
+    const swipe=rk>=0.6;reachGlow.scale.setScalar(swipe?0.8-0.3*clamp((rk-0.6)/0.5,0,1):0.3+0.45*(rk/0.6)+0.05*Math.sin(clock*40));
+    m.opacity=swipe?0.95:0.55+0.4*(rk/0.6);m.color.setHex(swipe?0xffffff:0xffffff);reachGlow.visible=true}
+  else{m.opacity=Math.max(0,m.opacity-dt*5);reachGlow.visible=m.opacity>0.02}
+}
 // defending: a small ring under the ball, green when a steal would reach it from where you stand
 const reachRing=new THREE.Mesh(new THREE.RingGeometry(0.16,0.22,28).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x46e08b,transparent:true,opacity:0,depthWrite:false,toneMapped:false}));
 reachRing.position.y=0.017;reachRing.renderOrder=3;scene.add(reachRing);
@@ -4048,6 +4124,7 @@ const lockTrack=new THREE.Mesh(new THREE.RingGeometry(0.66,0.77,LOCK_SEG).rotate
 lockTrack.position.y=0.018;lockTrack.renderOrder=3;scene.add(lockTrack);
 function defFeedback(t,col,sub){const e=$('defFb');e.querySelector('b').textContent=t;e.querySelector('b').style.color=col;e.querySelector('small').textContent=sub||'';e.classList.remove('show');void e.offsetWidth;e.classList.add('show')}
 function updateRing(dt){
+  updateReachGlow(dt);
   let op=0,col=0xff7a1f,sc=1;
   if(def.role==='def'&&defOn()&&game.mode==='play'){
     const D=DIFF[defLevel];
@@ -4096,7 +4173,8 @@ function updateHUD(){
   const lt=L?`${L.done?'✓ ':''}<b>Les ${L.idx+1}</b> · ${L.goalText} · ${Math.min(L.c,L.n)}/${L.n}`:'';
   if(hudCache.lp!==lt){hudCache.lp=lt;hud.lpill.innerHTML=lt;hud.lpill.hidden=!lt;hud.lpill.classList.toggle('done',!!(L&&L.done))}
   // defending: when he starts his shot, a meter above him; jump while it is in the green and your hands are up at his release
-  {const st=BO.shot,on=game.role==='def'&&def.role==='off'&&st&&!st.released&&M.active;const bm=$('botMeter');
+  {let st=BO.shot,on=game.role==='def'&&def.role==='off'&&st&&!st.released&&M.active;const bm=$('botMeter');
+    if(!on&&game.role==='def'&&def.role==='remote'&&NET.rsm&&M.phase==='live'){st=NET.rshot||(NET.rshot={type:'jump',released:false});st.t=NET.rsm.t+(performance.now()-NET.rsm.at)/1000;on=st.t<PERFECT*FILL+0.05}
     if(on){const rel=st.type==='jump'?PERFECT*FILL:(st.jumped?st.t+Math.max(0,def.vy)/15:0.4+4.6/15),lo=Math.max(0,(rel-0.47)/rel),hi=Math.max(0,(rel-0.235)/rel),p=clamp(st.t/rel,0,1);
       $('bmZone').style.bottom=(lo*100)+'%';$('bmZone').style.height=((hi-lo)*100)+'%';const f=$('bmFill');f.style.height=(p*100)+'%';f.classList.toggle('in',p>=lo&&p<=hi);
       const [x,y]=toScreen(_a.set(def.pos.x,def.y+2.25,def.pos.z));bm.style.transform=`translate(${clamp(x+26,8,innerWidth-30)}px,${clamp(y-42,50,innerHeight-100)}px)`;
@@ -4347,7 +4425,6 @@ tEl.pro.addEventListener('pointermove',e=>{
 });
 const endPro=e=>{if(T.pro&&T.pro.id===e.pointerId){T.pro=null;tEl.pro.classList.remove('down');proKnob.style.transform='translate(-50%,-50%)'}};
 tEl.pro.addEventListener('pointerup',endPro);tEl.pro.addEventListener('pointercancel',endPro);
-document.addEventListener('gesturestart',e=>e.preventDefault());
 document.getElementById('touch').addEventListener('contextmenu',e=>e.preventDefault());
 addEventListener('resize',touchScale);
 touchScale();if(IS_TOUCH)setTouchMode(true);
@@ -4420,7 +4497,27 @@ function pause(msg){
   show('pause');setMusicOpen(false);
 }
 function resume(){initAudio();game.mode='play';show(null);setMusicOpen(true);touchReset();setBodyMode();if(T.on)goFull();else if(!padMode){if(!fallback)lock();renderer.domElement.focus()}}
-function goFull(){try{const el=document.documentElement;if(!document.fullscreenElement&&el.requestFullscreen){const p=el.requestFullscreen({navigationUI:'hide'});if(p&&p.then)p.then(()=>{try{screen.orientation.lock('landscape').catch(()=>{})}catch(e){}}).catch(()=>{})}}catch(e){}}
+// fullscreen: the standard call, or Safari's webkit one on iPad
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement||null;
+function lockLand(){try{screen.orientation.lock('landscape').catch(()=>{})}catch(e){}}
+function goFull(){try{const el=document.documentElement;if(fsEl())return;const rq=el.requestFullscreen||el.webkitRequestFullscreen;if(!rq)return;const p=rq.call(el,{navigationUI:'hide'});if(p&&p.then)p.then(lockLand).catch(()=>{});else lockLand()}catch(e){}}
+function exitFull(){try{(document.exitFullscreen||document.webkitExitFullscreen).call(document)}catch(e){}}
+// no pinch or double-tap zoom on a tablet: the game is the whole screen and stays at 100%
+(function noZoom(){
+  const CONTENT='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover';
+  let vp=document.querySelector('meta[name=viewport]');if(!vp){vp=document.createElement('meta');vp.name='viewport';document.head.appendChild(vp)}vp.content=CONTENT;
+  const stop=e=>{e.preventDefault()};
+  for(const ev of ['gesturestart','gesturechange','gestureend'])document.addEventListener(ev,stop,{passive:false});
+  document.addEventListener('touchmove',e=>{if(e.scale!==undefined&&e.scale!==1)e.preventDefault()},{passive:false});
+  document.addEventListener('dblclick',e=>{if(!e.target.closest('input,textarea'))e.preventDefault()},{passive:false});
+  // if the page still got zoomed somehow, snap it back to 100%
+  const vv=window.visualViewport;
+  if(vv)vv.addEventListener('resize',()=>{if(Math.abs(vv.scale-1)>0.02){vp.content=CONTENT.replace('initial-scale=1','initial-scale=1.0');setTimeout(()=>{vp.content=CONTENT;relayout()},30)}});
+})();
+// after a rotation or going in and out of fullscreen, sizes settle a moment later: measure again
+function relayout(){window.dispatchEvent(new Event('resize'))}
+for(const ev of ['orientationchange','fullscreenchange','webkitfullscreenchange'])addEventListener(ev,()=>{setTimeout(relayout,120);setTimeout(relayout,450)});
+document.addEventListener('fullscreenchange',()=>{setTimeout(relayout,120)});document.addEventListener('webkitfullscreenchange',()=>{setTimeout(relayout,120)});
 function resultReplayButtons(rec){const has=!!rec;$('btnResReplay').hidden=!has;$('btnResSave').hidden=!has;$('btnResSave').disabled=false;$('btnResSave').textContent='Bewaar replay'}
 function toMenu(){
   if(REC.on){REC.on=false;REC.chunks=[];REC.times=[]}
@@ -4734,7 +4831,7 @@ function updateDefender(dt){
       const rate=D.steal*(poss==='dribble'?1:0.35)*(exposed?1.4:0.55)*(1+fatigue*1.2)*(anim.move?0.5:1)*(clock-lastMoveT>1.2?1.5:1);
       if(Math.random()<rate*dt){
         const bl=(ball.pos.x-def.pos.x)*DR.r.x+(ball.pos.z-def.pos.z)*DR.r.z;
-        def.state='reach';def.t=0;def.reach={ax:ball.pos.x,az:ball.pos.z,hand:bl>=0?1:0,dodged:false,res:false,lunged:false};sfx.squeak(0.7);
+        def.state='reach';def.t=0;def.reach={ax:ball.pos.x,az:ball.pos.z,hand:bl>=0?1:0,dodged:false,res:false,lunged:false};sfx.squeak(1.2);sfx.reachCue();
       }else if(Math.random()<dt*0.4)def.stealCd=0.5;
     }
   }
@@ -4754,7 +4851,10 @@ function updateDefender(dt){
   if(st==='land'){crouch=0.3}
   if(st==='fallen')sit=1;
   let rk=0;
-  if(st==='reach'){rk=clamp(def.t/D.reachW,0,1.4);crouch=0.34+0.06*rk;lean=rk<0.6?0.12:0.42;stag=def.reach.hand?[-0.12,0.3*Math.min(rk,1)]:[0.3*Math.min(rk,1),-0.12]}
+  let twist=0;
+  if(st==='reach'){rk=clamp(def.t/D.reachW,0,1.4);const hs=def.reach.hand?1:-1;
+    crouch=rk<0.6?0.36+0.12*(rk/0.6):0.42;lean=rk<0.6?0.02:0.5;twist=rk<0.6?hs*0.42*(rk/0.6):-hs*0.3;          // load: sit back, shoulders turned away; swipe: lunge and whip through
+    stag=def.reach.hand?[-0.14,0.36*Math.min(rk,1)]:[0.36*Math.min(rk,1),-0.14]}
   if(st==='scramble'||st==='offbal'){
     // build-up: he leans further and further out (two wobbles), at the plant his weight snaps back
     const u=clamp(def.t/WOB_C,0,1),after=clamp((def.t-WOB_C)/0.25,0,1),sway=Math.sin(u*Math.PI*2.5)*(1-after);
@@ -4763,7 +4863,7 @@ function updateDefender(dt){
   if(air)crouch=0.02;
   _a.set(def.pos.x,def.y,def.pos.z);
   const fallYaw=st==='stumble'||st==='fallen'?(def.fallSpin||0)*Math.min(1,(st==='fallen'?1:def.t/0.3)):0;
-  rigBody(DR,_a,def.vel,!air,dt,{yaw:fy+fallYaw,yawRate:st==='fallen'||st==='stumble'?5:12,crouch,lean,side:side+clamp(lat*0.02,-0.1,0.1),stance:st==='guard'?0.12:0,sit,legX,stagger:stag,tuck:0.15,steps:false});
+  rigBody(DR,_a,def.vel,!air,dt,{yaw:fy+fallYaw,yawRate:st==='fallen'||st==='stumble'?5:12,crouch,lean,side:side+clamp(lat*0.02,-0.1,0.1),twist,stance:st==='guard'?0.12:0,sit,legX,stagger:stag,tuck:0.15,steps:false});
   const J=DR.J;
   if(st==='stumble'||(st==='fallen'&&def.t<0.5)){
     const w=Math.sin(clock*22);   // arms flail
@@ -4774,7 +4874,7 @@ function updateDefender(dt){
   }else if(st==='reach'||st==='offbal'){
     // the swipe: arm cocks back low, then whips through where the ball was; after a whiff it hangs out there
     const i=st==='reach'?def.reach.hand:(def.reach?def.reach.hand:1),o=1-i,R=def.reach;
-    if(st==='reach'&&rk<0.6){J.ht[i].copy(J.sh[i]).addScaledVector(DR.f,-0.05).addScaledVector(UP,-0.4).addScaledVector(DR.r,SIDES[i]*0.28);DR.rate[i]=20;DR.flickT[i]=-0.6}
+    if(st==='reach'&&rk<0.6){J.ht[i].copy(J.sh[i]).addScaledVector(DR.f,-0.28).addScaledVector(UP,-0.22).addScaledVector(DR.r,SIDES[i]*0.46);DR.rate[i]=20;DR.flickT[i]=-0.6}
     else{_b.set(R?R.ax:ball.pos.x,0.72,R?R.az:ball.pos.z).sub(J.sh[i]);const l=_b.length();if(l>0.6)_b.multiplyScalar(0.6/l);J.ht[i].copy(J.sh[i]).add(_b);DR.rate[i]=st==='reach'?55:10;DR.flickT[i]=0.9}
     J.ht[o].copy(J.sh[o]).addScaledVector(UP,st==='offbal'?0.3:0.1).addScaledVector(DR.f,-0.2).addScaledVector(DR.r,SIDES[o]*0.35);DR.rate[o]=16;
   }else if(sit<0.5&&DR.sit<0.5){
@@ -5645,7 +5745,7 @@ function musicEl(){
 function musicPlay(){
   const n=MPLAY.queue.length||1;MPLAY.qi=((MPLAY.qi%n)+n)%n;
   const g=tget(MPLAY.queue[MPLAY.qi])||{a:ALBUMS.m_arena,i:0,t:ALBUMS.m_arena.tracks[0]};
-  MPLAY.cur=g.t;MPLAY.curA=g.a;clearTimeout(MPLAY.beatT);
+  MPLAY.cur=g.t;MPLAY.curA=g.a;clearTimeout(MPLAY.beatT);MUS.paused=false;
   if(g.t.beat){if(MPLAY.el)MPLAY.el.pause();setSong(g.t.beat);MUS.mode='beat'}
   else if(ac){const el=musicEl();if(el){MUS.mode='album';el.src=g.t.url;try{el.currentTime=0}catch(e){}el.play().catch(()=>{})}}
   npShow();if(!$('pMusic').hidden)renderMusic();
@@ -5673,96 +5773,165 @@ function npShow(){
 }
 document.querySelectorAll('[data-skip]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();musicSkip(+b.dataset.skip||1)}));
 
-/* ---- the music screen: your albums, all their songs, shuffle, and playlists ---- */
-const MUI={tab:'albums',open:{},addFor:null};
+/* ---- the music screen: a proper player. Now playing with progress and controls on top, then your albums as
+   records (open one for its songs) and your playlists ---- */
+const MUI={tab:'albums',open:null,addFor:null};
+const MP_IC={
+  play:'<path d="M7 4.5v15l12.5-7.5z" fill="currentColor" stroke="none"/>',
+  pause:'<rect x="6" y="4.5" width="4.2" height="15" rx="1" fill="currentColor" stroke="none"/><rect x="13.8" y="4.5" width="4.2" height="15" rx="1" fill="currentColor" stroke="none"/>',
+  next:'<path d="M5 5l10 7-10 7z" fill="currentColor" stroke="none"/><rect x="16.5" y="5" width="2.6" height="14" rx=".8" fill="currentColor" stroke="none"/>',
+  prev:'<path d="M19 5L9 12l10 7z" fill="currentColor" stroke="none"/><rect x="4.9" y="5" width="2.6" height="14" rx=".8" fill="currentColor" stroke="none"/>',
+  shuf:'<path d="M3 7h3.5c2.5 0 4 1.6 5.5 5s3 5 5.5 5H21M3 17h3.5c1.6 0 2.8-.7 3.8-2M14 9c1-1.3 2.2-2 3.5-2H21M18 4l3 3-3 3M18 14l3 3-3 3"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',back:'<path d="M15 5l-7 7 7 7"/>',list:'<path d="M4 7h11M4 12h11M4 17h7M18 14v6M15 17h6"/>'
+};
+const mpSvg=(k,c)=>`<svg viewBox="0 0 24 24" class="${c||''}" aria-hidden="true">${MP_IC[k]}</svg>`;
+function ibtn(k,label,cls,fn){const b=el('button','mpI '+(cls||''));b.type='button';b.innerHTML=mpSvg(k);b.setAttribute('aria-label',label);b.title=label;b.onclick=fn;return b}
+const mpT=s=>!isFinite(s)||s<0?'–:––':Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+function trackDur(t){if(t.beat){const S=SONGS[t.beat];return S?FORM_BARS*16*60/S.bpm/4:NaN}return t.dur||NaN}
+function musicPos(){
+  const t=MPLAY.cur;if(!t)return [0,NaN];
+  if(t.beat&&MUS.mode==='beat'&&MUS.song){return [Math.min(MUS.step,FORM_BARS*16)*MUS.s16,trackDur(t)]}
+  if(MPLAY.el&&MUS.mode==='album'){if(isFinite(MPLAY.el.duration))t.dur=MPLAY.el.duration;return [MPLAY.el.currentTime||0,MPLAY.el.duration]}
+  return [0,trackDur(t)];
+}
+function musicToggle(){
+  initAudio();MUS.paused=!MUS.paused;
+  if(MUS.mode==='album'&&MPLAY.el){MUS.paused?MPLAY.el.pause():MPLAY.el.play().catch(()=>{})}
+  else if(!MUS.paused&&ac)MUS.next=ac.currentTime+0.05;
+  sfx.uiTick();mpTick(true);
+}
 function modeLabel(){
   if(ALBUMS[PREVIEW.music])return Tx('Preview','Voorproefje');
-  if(MMODE.type==='all')return Tx('All your songs, shuffled','Al je nummers, geshuffeld');
-  if(MMODE.type==='playlist'){const p=PLAYLISTS.find(x=>x.id===MMODE.id);return (p?p.name:'Playlist')+(MMODE.shuffle?Tx(', shuffled',', geshuffeld'):'')}
-  const a=ALBUMS[EQUIP.music]||ALBUMS.m_arena;return a.name+(MMODE.shuffle?Tx(', shuffled',', geshuffeld'):'')
+  if(MMODE.type==='all')return Tx('All your songs','Al je nummers');
+  if(MMODE.type==='playlist'){const p=PLAYLISTS.find(x=>x.id===MMODE.id);return Tx('Playlist','Playlist')+'  ·  '+(p?p.name:'')}
+  const a=ALBUMS[EQUIP.music]||ALBUMS.m_arena;return Tx('Album','Album')+'  ·  '+a.name;
 }
 function newPlaylist(name){
   const nm=String(name||'').trim().slice(0,28)||Tx('My playlist','Mijn playlist')+' '+(PLAYLISTS.length+1);
   const p={id:'p'+Date.now().toString(36)+((Math.random()*1e4)|0),name:nm,tracks:[]};PLAYLISTS.push(p);savePlaylists();return p;
 }
 function addToPlaylist(p,ref){if(!p.tracks.some(r=>r.a===ref.a&&r.u===ref.u)){p.tracks.push({a:ref.a,u:ref.u});savePlaylists()}}
+// a record for each album: grooves, a sheen and the album's initials on a label in its rarity colour
+const DISC={};
+function discImg(a){
+  if(DISC[a.id])return DISC[a.id];
+  const N=200,c=N/2,cv=document.createElement('canvas');cv.width=cv.height=N;const g=cv.getContext('2d'),it=SHOP_BY[a.id],rc=it?RAR[it.r][1]:'#9cadbf';
+  g.fillStyle='#0a0c10';g.beginPath();g.arc(c,c,c,0,7);g.fill();
+  g.strokeStyle='rgba(255,255,255,.06)';g.lineWidth=1;for(let k=0;k<22;k++){g.beginPath();g.arc(c,c,40+k*2.6,0,7);g.stroke()}
+  const sh=g.createConicGradient?g.createConicGradient(0.6,c,c):null;
+  if(sh){sh.addColorStop(0,'rgba(255,255,255,0)');sh.addColorStop(0.08,'rgba(255,255,255,.16)');sh.addColorStop(0.16,'rgba(255,255,255,0)');sh.addColorStop(0.5,'rgba(255,255,255,0)');sh.addColorStop(0.58,'rgba(255,255,255,.12)');sh.addColorStop(0.66,'rgba(255,255,255,0)');sh.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=sh;g.beginPath();g.arc(c,c,c,0,7);g.fill()}
+  const lg=g.createRadialGradient(c-8,c-8,4,c,c,36);lg.addColorStop(0,'#fff');lg.addColorStop(0.15,rc);lg.addColorStop(1,rc);g.fillStyle=lg;g.beginPath();g.arc(c,c,36,0,7);g.fill();
+  const ini=String(a.name||'?').split(/\s+/).filter(Boolean).map(w=>w[0]).join('').slice(0,3).toUpperCase();
+  g.fillStyle='rgba(10,12,16,.82)';g.font='900 26px "Big Shoulders Display", Impact, sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(ini,c,c-9);
+  g.fillStyle='#0a0c10';g.beginPath();g.arc(c,c+12,3.2,0,7);g.fill();
+  return DISC[a.id]=cv.toDataURL();
+}
+function mpArtEl(a,cls){const w=el('div','mpArt '+(cls||''));const im=el('img');im.alt='';im.src=discImg(a);w.append(im);return w}
+function mosaic(p){const w=el('div','mpArt mpMosaic');const as=[...new Set(p.tracks.map(r=>r.a))].filter(id=>ALBUMS[id]).slice(0,4);
+  if(!as.length)w.innerHTML=mpSvg('list');else for(const id of as){const im=el('img');im.alt='';im.src=discImg(ALBUMS[id]);w.append(im)}
+  w.classList.add('n'+Math.max(1,as.length));return w}
+// now playing: rebuilt rarely, its progress bar and play button update in place
+function mpTick(force){
+  const box=$('mpNowCard');if(!box||$('pMusic').hidden)return;
+  const [pos,dur]=musicPos(),f=box.querySelector('.mpFill'),tc=box.querySelector('.mpTc'),td=box.querySelector('.mpTd');
+  if(f)f.style.width=(isFinite(dur)&&dur>0?clamp(pos/dur,0,1)*100:0)+'%';if(tc)tc.textContent=mpT(pos);if(td)td.textContent=mpT(dur);
+  const pp=box.querySelector('.mpPP');if(pp&&(force||pp.dataset.p!==String(!!MUS.paused))){pp.dataset.p=String(!!MUS.paused);pp.innerHTML=mpSvg(MUS.paused?'play':'pause');pp.setAttribute('aria-label',MUS.paused?Tx('Play','Afspelen'):Tx('Pause','Pauze'))}
+  box.classList.toggle('paused',!!MUS.paused);
+}
+setInterval(()=>mpTick(false),250);
 function renderMusic(){
   const box=$('musicBody');if(!box)return;box.innerHTML='';
   const cur=MPLAY.queue[MPLAY.qi]||{},isCur=r=>r.a===cur.a&&r.u===cur.u;
-  // now playing
-  const np=el('div','mpNow');
-  const tx=el('div','mpNowTx');tx.append(el('span','mpLab',Tx('Now playing','Nu speelt')),el('b',null,MPLAY.cur?MPLAY.cur.title:'—'),el('span','mpSub',(MPLAY.curA?MPLAY.curA.name:'')+'  ·  '+modeLabel()));
+  // ---- now playing
+  const np=el('div','mpNow');np.id='mpNowCard';
+  if(MPLAY.curA)np.append(mpArtEl(MPLAY.curA,'big spin'));
+  const info=el('div','mpNowInfo');
+  info.append(el('span','mpEyebrow',modeLabel()),el('b','mpTitleBig',MPLAY.cur?MPLAY.cur.title:'—'),el('span','mpArtist',MPLAY.curA?(MPLAY.curA.name+(MPLAY.curA.artist&&MPLAY.curA.artist!==MPLAY.curA.name?'  ·  '+MPLAY.curA.artist:'')):''));
+  const bar=el('div','mpBar');const tr=el('div','mpTrackBar');tr.append(el('div','mpFill'));bar.append(el('span','mpTc','0:00'),tr,el('span','mpTd','–:––'));
+  const shufOn=MMODE.shuffle||MMODE.type==='all';
   const ctl=el('div','mpCtl');
-  const prev=el('button','iconMini','⏮');prev.setAttribute('aria-label',Tx('Previous','Vorige'));prev.onclick=()=>musicSkip(-1);
-  const next=el('button','iconMini','⏭');next.setAttribute('aria-label',Tx('Next','Volgende'));next.onclick=()=>musicSkip(1);
-  const shuf=el('button','mpChip'+(MMODE.shuffle||MMODE.type==='all'?' on':''),'⤮ '+Tx('Shuffle','Shuffle'));
-  shuf.onclick=()=>{if(MMODE.type==='all')return;playFrom(MMODE.type,MMODE.type==='album'?EQUIP.music:MMODE.id,cur,!MMODE.shuffle)};
-  ctl.append(prev,next,shuf);np.append(tx,ctl);box.append(np);
-  const all=el('button','mpBig'+(MMODE.type==='all'?' on':''),'⤮  '+Tx('Shuffle all my songs','Shuffle al mijn nummers'));all.onclick=()=>playFrom('all',null,null,true);box.append(all);
-  // tabs
-  const tabs=el('div','mpTabs');
-  for(const [k,l] of [['albums',Tx('Albums','Albums')],['lists',Tx('Playlists','Playlists')]]){const b=el('button','mpTab'+(MUI.tab===k?' on':''),l);b.onclick=()=>{MUI.tab=k;MUI.addFor=null;renderMusic()};tabs.append(b)}
-  box.append(tabs);
-  const trackRow=(a,i,onPlay,extra)=>{
-    const t=a.tracks[i],r=tref(a,i),row=el('div','mpTrack'+(isCur(r)?' cur':''));
-    const play=el('button','mpPlay');play.append(el('span','mpNum',isCur(r)?'♪':String(i+1)),el('span','mpTitle',t.title));play.onclick=onPlay;row.append(play);
-    if(extra)row.append(extra);return row;
+  const sh=ibtn('shuf',Tx('Shuffle','Shuffle'),'sm'+(shufOn?' on':''),()=>{if(MMODE.type==='all')return;playFrom(MMODE.type,MMODE.type==='album'?EQUIP.music:MMODE.id,cur,!MMODE.shuffle)});
+  const pp=ibtn(MUS.paused?'play':'pause',MUS.paused?Tx('Play','Afspelen'):Tx('Pause','Pauze'),'mpPP big',musicToggle);pp.dataset.p=String(!!MUS.paused);
+  ctl.append(sh,ibtn('prev',Tx('Previous','Vorige'),'',()=>musicSkip(-1)),pp,ibtn('next',Tx('Next','Volgende'),'',()=>musicSkip(1)),el('span','mpCtlSpacer'));
+  info.append(bar,ctl);np.append(info);box.append(np);
+  // ---- tabs + shuffle everything
+  const top=el('div','mpTop');const seg=el('div','mpSeg');
+  for(const [k,l] of [['albums',Tx('Albums','Albums')],['lists',Tx('Playlists','Playlists')]]){const b=el('button','mpSegB'+(MUI.tab===k?' on':''),l);b.type='button';b.onclick=()=>{MUI.tab=k;MUI.open=null;MUI.addFor=null;renderMusic()};seg.append(b)}
+  const all=el('button','mpPill'+(MMODE.type==='all'?' on':''));all.type='button';all.innerHTML=mpSvg('shuf')+'<span>'+Tx('Shuffle all','Alles shufflen')+'</span>';all.onclick=()=>{playFrom('all',null,null,true);renderMusic()};
+  top.append(seg,all);box.append(top);
+  // ---- a song list (album or playlist)
+  const songList=(rows,ctx)=>{
+    const list=el('div','mpSongs');
+    rows.forEach(({a,i,r,k},n)=>{
+      const t=a.tracks[i],row=el('div','mpRow'+(isCur(r)?' cur':''));
+      const pl=el('button','mpRowMain');pl.type='button';
+      const num=el('span','mpN');if(isCur(r)&&!MUS.paused)num.innerHTML='<i></i><i></i><i></i>';else num.textContent=String(n+1);
+      const tx=el('span','mpRowTx');tx.append(el('b',null,t.title));if(ctx==='list')tx.append(el('small',null,a.name));
+      pl.append(num,tx,el('span','mpDur',mpT(trackDur(t))));
+      pl.onclick=()=>{if(ctx==='list')playFrom('playlist',k,r,MMODE.type==='playlist'&&MMODE.id===k&&MMODE.shuffle);else playFrom('album',a.id,r,MMODE.type==='album'&&MMODE.shuffle&&EQUIP.music===a.id)};
+      row.append(pl);
+      if(ctx==='album'){row.append(ibtn('plus',Tx('Add to playlist','Aan playlist toevoegen'),'sm',()=>{MUI.addFor=MUI.addFor&&MUI.addFor.u===r.u?null:r;renderMusic()}))}
+      else row.append(ibtn('x',Tx('Remove','Weghalen'),'sm',()=>{const p=PLAYLISTS.find(x=>x.id===k);if(p){p.tracks=p.tracks.filter(q=>!(q.a===r.a&&q.u===r.u));savePlaylists();renderMusic()}}));
+      list.append(row);
+      if(ctx==='album'&&MUI.addFor&&MUI.addFor.a===r.a&&MUI.addFor.u===r.u){
+        const pop=el('div','mpPop');pop.append(el('span',null,Tx('Add to','Toevoegen aan')));
+        for(const p of PLAYLISTS){const b=el('button','mpPill',p.name);b.type='button';b.onclick=()=>{addToPlaylist(p,r);MUI.addFor=null;sfx.uiTick();renderMusic()};pop.append(b)}
+        const nb=el('button','mpPill on');nb.type='button';nb.innerHTML=mpSvg('plus')+'<span>'+Tx('New playlist','Nieuwe playlist')+'</span>';nb.onclick=()=>{const p=newPlaylist();addToPlaylist(p,r);MUI.addFor=null;sfx.uiTick();renderMusic()};pop.append(nb);
+        list.append(pop);
+      }
+    });
+    return list;
   };
+  const detailHead=(artEl,kind,name,sub,onPlay,onShuf,extra)=>{
+    const h=el('div','mpDetail');
+    const bk=ibtn('back',Tx('Back','Terug'),'sm mpBack',()=>{MUI.open=null;MUI.addFor=null;renderMusic()});
+    const tx=el('div','mpDetailTx');tx.append(el('span','mpEyebrow',kind),el('b',null,name),el('span','mpArtist',sub));
+    const acts=el('div','mpActs');const p=el('button','mpPlayBtn');p.type='button';p.innerHTML=mpSvg('play')+'<span>'+Tx('Play','Afspelen')+'</span>';p.onclick=onPlay;
+    const s_=el('button','mpPill');s_.type='button';s_.innerHTML=mpSvg('shuf')+'<span>'+Tx('Shuffle','Shuffle')+'</span>';s_.onclick=onShuf;acts.append(p,s_);if(extra)acts.append(extra);
+    tx.append(acts);h.append(bk,artEl,tx);return h;
+  };
+  const songs=n=>n+' '+Tx(n===1?'song':'songs',n===1?'nummer':'nummers');
   if(MUI.tab==='albums'){
-    for(const a of ownedAlbums()){
-      const wrap=el('div','mpAlbum'),head=el('div','mpHead');
-      const nm=el('button','mpName');nm.append(el('b',null,a.name),el('span',null,(a.artist?a.artist+'  ·  ':'')+a.tracks.length+' '+Tx(a.tracks.length===1?'song':'songs',a.tracks.length===1?'nummer':'nummers')));
-      nm.onclick=()=>{MUI.open[a.id]=!MUI.open[a.id];renderMusic()};
-      const pl=el('button','mpChip','▶ '+Tx('Play','Afspelen'));pl.onclick=()=>playFrom('album',a.id,null,false);
-      const sh=el('button','mpChip','⤮');sh.setAttribute('aria-label',Tx('Shuffle album','Album shuffelen'));sh.title=Tx('Shuffle album','Album shuffelen');sh.onclick=()=>playFrom('album',a.id,null,true);
-      head.append(nm,pl,sh);wrap.append(head);
-      if(MUI.open[a.id]||ownedAlbums().length===1){
-        const list=el('div','mpList');
-        a.tracks.forEach((t,i)=>{
-          const add=el('button','iconMini mpAdd','+');add.setAttribute('aria-label',Tx('Add to playlist','Aan playlist toevoegen'));add.title=Tx('Add to playlist','Aan playlist toevoegen');
-          add.onclick=()=>{MUI.addFor=MUI.addFor&&MUI.addFor.a===a.id&&MUI.addFor.i===i?null:{a:a.id,i};renderMusic()};
-          list.append(trackRow(a,i,()=>playFrom('album',a.id,tref(a,i),MMODE.type==='album'&&MMODE.shuffle&&EQUIP.music===a.id),add));
-          if(MUI.addFor&&MUI.addFor.a===a.id&&MUI.addFor.i===i){
-            const pop=el('div','mpPop');pop.append(el('span',null,Tx('Add to:','Toevoegen aan:')));
-            for(const p of PLAYLISTS){const b=el('button','mpChip',p.name);b.onclick=()=>{addToPlaylist(p,tref(a,i));MUI.addFor=null;sfx.uiTick();renderMusic()};pop.append(b)}
-            const nb=el('button','mpChip on','+ '+Tx('New playlist','Nieuwe playlist'));nb.onclick=()=>{const p=newPlaylist();addToPlaylist(p,tref(a,i));MUI.addFor=null;MUI.tab='lists';MUI.open[p.id]=true;sfx.uiTick();renderMusic()};pop.append(nb);
-            list.append(pop);
-          }
-        });
-        wrap.append(list);
+    const A=MUI.open&&ALBUMS[MUI.open];
+    if(A){
+      const mins=Math.round(A.tracks.reduce((s,t)=>s+(trackDur(t)||0),0)/60);
+      box.append(detailHead(mpArtEl(A,'mid'),Tx('Album','Album'),A.name,(A.artist?A.artist+'  ·  ':'')+songs(A.tracks.length)+(mins?'  ·  '+mins+' min':''),()=>playFrom('album',A.id,null,false),()=>playFrom('album',A.id,null,true)));
+      box.append(songList(A.tracks.map((t,i)=>({a:A,i,r:tref(A,i)})),'album'));
+    }else{
+      const grid=el('div','mpGrid');
+      for(const a of ownedAlbums()){
+        const c=el('button','mpCard'+(MPLAY.curA===a?' cur':''));c.type='button';c.append(mpArtEl(a),el('b',null,a.name),el('span',null,songs(a.tracks.length)));
+        c.onclick=()=>{MUI.open=a.id;renderMusic()};grid.append(c);
       }
-      box.append(wrap);
+      box.append(grid);
+      const more=SHOP.filter(x=>x.cat==='music'&&!OWNED.has(x.id)).length;
+      box.append(el('p','note mpHint',more?Tx(`${more} more ${more===1?'album':'albums'} in the Locker room.`,`Nog ${more} ${more===1?'album':'albums'} in de Locker room.`):Tx('More albums come from the music folder on GitHub (see LEESMIJ).','Meer albums komen uit de music-map op GitHub (zie LEESMIJ).')));
     }
-    const more=SHOP.filter(x=>x.cat==='music'&&!OWNED.has(x.id)).length;
-    const n=el('p','note');n.textContent=more?Tx(`${more} more ${more===1?'album':'albums'} in the Locker room.`,`Nog ${more} ${more===1?'album':'albums'} in de Locker room.`):Tx('More albums come from the music folder on GitHub (see LEESMIJ).','Meer albums komen uit de music-map op GitHub (zie LEESMIJ).');box.append(n);
   }else{
-    const mk=el('div','mpNew');const inp=el('input','txt');inp.maxLength=28;inp.placeholder=Tx('Playlist name','Naam van je playlist');inp.setAttribute('aria-label',inp.placeholder);
-    const go=el('button','small',Tx('Create','Maken'));go.onclick=()=>{const p=newPlaylist(inp.value);MUI.open[p.id]=true;sfx.uiTick();renderMusic()};
-    inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go.click()}});mk.append(inp,go);box.append(mk);
-    if(!PLAYLISTS.length)box.append(el('p','note',Tx('No playlists yet. Make one here, then add songs with the + next to a song under Albums.','Nog geen playlists. Maak er hier een en voeg nummers toe met de + naast een nummer bij Albums.')));
-    for(const p of PLAYLISTS){
-      const wrap=el('div','mpAlbum'),head=el('div','mpHead'),ok=p.tracks.filter(r=>tget(r)&&OWNED.has(r.a));
-      const nm=el('button','mpName');nm.append(el('b',null,p.name),el('span',null,ok.length+' '+Tx(ok.length===1?'song':'songs',ok.length===1?'nummer':'nummers')));nm.onclick=()=>{MUI.open[p.id]=!MUI.open[p.id];renderMusic()};
-      const pl=el('button','mpChip','▶ '+Tx('Play','Afspelen'));pl.disabled=!ok.length;pl.onclick=()=>playFrom('playlist',p.id,null,false);
-      const sh=el('button','mpChip','⤮');sh.disabled=!ok.length;sh.title=Tx('Shuffle playlist','Playlist shuffelen');sh.setAttribute('aria-label',sh.title);sh.onclick=()=>playFrom('playlist',p.id,null,true);
-      const del=el('button','mpChip mpDel','✕');del.title=Tx('Delete playlist','Playlist verwijderen');del.setAttribute('aria-label',del.title);
-      del.onclick=()=>{if(!del.dataset.sure){del.dataset.sure='1';del.textContent=Tx('Delete?','Weg?');setTimeout(()=>{if(del.isConnected){delete del.dataset.sure;del.textContent='✕'}},2500);return}
-        PLAYLISTS=PLAYLISTS.filter(x=>x!==p);savePlaylists();if(MMODE.type==='playlist'&&MMODE.id===p.id)playFrom('album',EQUIP.music,null,false);else renderMusic()};
-      head.append(nm,pl,sh,del);wrap.append(head);
-      if(MUI.open[p.id]){
-        const list=el('div','mpList');
-        p.tracks.forEach((r,k)=>{const g=tget(r);if(!g||!OWNED.has(r.a))return;
-          const rm=el('button','iconMini mpAdd','✕');rm.title=Tx('Remove','Weghalen');rm.setAttribute('aria-label',rm.title);rm.onclick=()=>{p.tracks.splice(k,1);savePlaylists();renderMusic()};
-          const row=trackRow(g.a,g.i,()=>playFrom('playlist',p.id,r,MMODE.type==='playlist'&&MMODE.id===p.id&&MMODE.shuffle),rm);row.querySelector('.mpNum').textContent=isCur(r)?'♪':String(k+1);
-          row.querySelector('.mpTitle').append(el('small',null,'  '+g.a.name));list.append(row)});
-        if(!ok.length)list.append(el('p','note',Tx('Empty. Go to Albums and press + next to a song.','Leeg. Ga naar Albums en druk op + naast een nummer.')));
-        wrap.append(list);
-      }
-      box.append(wrap);
+    const P=MUI.open&&PLAYLISTS.find(x=>x.id===MUI.open);
+    if(P){
+      const ok=P.tracks.filter(r=>tget(r)&&OWNED.has(r.a));
+      const del=el('button','mpPill mpDel');del.type='button';del.innerHTML=mpSvg('x')+'<span>'+Tx('Delete','Verwijderen')+'</span>';
+      del.onclick=()=>{if(!del.dataset.sure){del.dataset.sure='1';del.querySelector('span').textContent=Tx('Sure?','Zeker?');setTimeout(()=>{if(del.isConnected){delete del.dataset.sure;del.querySelector('span').textContent=Tx('Delete','Verwijderen')}},2500);return}
+        PLAYLISTS=PLAYLISTS.filter(x=>x!==P);savePlaylists();MUI.open=null;if(MMODE.type==='playlist'&&MMODE.id===P.id)playFrom('album',EQUIP.music,null,false);renderMusic()};
+      box.append(detailHead(mosaic(P),Tx('Playlist','Playlist'),P.name,songs(ok.length),()=>ok.length&&playFrom('playlist',P.id,null,false),()=>ok.length&&playFrom('playlist',P.id,null,true),del));
+      if(ok.length)box.append(songList(ok.map(r=>{const g=tget(r);return {a:g.a,i:g.i,r,k:P.id}}),'list'));
+      else box.append(el('p','note mpHint',Tx('Empty. Open an album and press + next to a song.','Leeg. Open een album en druk op + naast een nummer.')));
+    }else{
+      const mk=el('div','mpNew');const inp=el('input','txt');inp.maxLength=28;inp.placeholder=Tx('New playlist name','Naam van je nieuwe playlist');inp.setAttribute('aria-label',inp.placeholder);
+      const go=el('button','small');go.type='button';go.innerHTML=Tx('Create','Maken');go.onclick=()=>{const p=newPlaylist(inp.value);MUI.open=p.id;sfx.uiTick();renderMusic()};
+      inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go.click()}});mk.append(inp,go);box.append(mk);
+      if(!PLAYLISTS.length)box.append(el('p','note mpHint',Tx('No playlists yet. Make one here, then add songs with the + next to a song in an album.','Nog geen playlists. Maak er hier een en voeg nummers toe met de + naast een nummer in een album.')));
+      const grid=el('div','mpGrid');
+      for(const p of PLAYLISTS){const ok=p.tracks.filter(r=>tget(r)&&OWNED.has(r.a)).length;
+        const c=el('button','mpCard'+(MMODE.type==='playlist'&&MMODE.id===p.id?' cur':''));c.type='button';c.append(mosaic(p),el('b',null,p.name),el('span',null,songs(ok)));
+        c.onclick=()=>{MUI.open=p.id;renderMusic()};grid.append(c)}
+      box.append(grid);
     }
   }
+  mpTick(true);
 }
-function openMusic(){showPanel('pMusic');renderMusic();setMusicOpen(true)}
+function openMusic(){showPanel('pMusic');MUI.open=null;MUI.addFor=null;renderMusic();setMusicOpen(true)}
 MUSIC_READY=true;
 /* the 3D showcase: you on a lit pedestal, turning slowly; drag to spin */
 const SHOW={on:false,kind:null,w:0,yaw:Math.PI,yawT:null,idle:0,drag:null,ballT:0,pos:new V3(0,0.08,9.4),cp:null,ct:null,fov:55};
@@ -6173,7 +6342,7 @@ function showTitle(){
   $('tPress').textContent=padMode?Tx('Press A','Druk op A'):T.on||IS_TOUCH?Tx('Tap to start','Tik om te beginnen'):Tx('Press any key','Druk op een toets');
 }
 function titleGo(){
-  if($('title').hidden||HOME.going)return;HOME.going=true;initAudio();sfx.boom();
+  if($('title').hidden||HOME.going)return;HOME.going=true;initAudio();sfx.boom();if(T.on||IS_TOUCH)goFull();
   $('title').classList.add('out');
   setTimeout(()=>{HOME.going=false;HOME.title=false;rigVisible(PR,true);$('title').classList.remove('out');if(!ACCOUNT)openOnboard(0);else enterHome(true)},460);
 }
@@ -6289,6 +6458,7 @@ $('btnAccReset').onclick=()=>{
 };
 $('pCard').onclick=()=>openShop();
 $('btnMusic').onclick=()=>openMusic();
+$('btnFull').onclick=()=>{fsEl()?exitFull():goFull()};
 $('npHome').addEventListener('click',()=>openMusic());
 // ---- keyboard on the front end
 addEventListener('keydown',e=>{
